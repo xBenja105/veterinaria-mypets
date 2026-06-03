@@ -9,14 +9,16 @@
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
     <style>
         :root {
-            --primary: #FF6B6B;
-            --primary-dark: #E85555;
-            --secondary: #4ECDC4;
-            --accent: #FFE66D;
+            --primary: #3ECDC4;
+            --primary-dark: #2DB5AD;
+            --secondary: #9B7ED9;
+            --secondary-light: #B8A4E8;
+            --accent: #FF8C42;
             --dark: #2D3436;
-            --light: #F7F9FC;
+            --light: #F0FAFA;
             --white: #FFFFFF;
-            --gradient: linear-gradient(135deg, #FF6B6B 0%, #FF8E53 100%);
+            --gradient: linear-gradient(135deg, #3ECDC4 0%, #9B7ED9 100%);
+            --gradient-soft: linear-gradient(135deg, rgba(62,205,196,0.1) 0%, rgba(155,126,217,0.1) 100%);
         }
 
         * {
@@ -52,6 +54,11 @@
             50% { transform: scale(1.05); }
         }
 
+        @keyframes pawWalk {
+            0%, 100% { opacity: 0.3; transform: translateY(0); }
+            50% { opacity: 1; transform: translateY(-10px); }
+        }
+
         .animate {
             opacity: 0;
             animation: fadeInUp 0.8s ease forwards;
@@ -70,7 +77,7 @@
             backdrop-filter: blur(10px);
             z-index: 1000;
             padding: 1rem 0;
-            box-shadow: 0 2px 20px rgba(0,0,0,0.08);
+            box-shadow: 0 2px 20px rgba(62,205,196,0.1);
             transition: all 0.3s ease;
         }
 
@@ -95,6 +102,7 @@
 
         .logo i {
             font-size: 2rem;
+            color: var(--secondary);
         }
 
         .nav-links {
@@ -135,6 +143,7 @@
             display: none;
             font-size: 1.5rem;
             cursor: pointer;
+            color: var(--primary);
         }
 
         /* Hero Section */
@@ -153,7 +162,7 @@
             position: absolute;
             width: 600px;
             height: 600px;
-            background: rgba(255,255,255,0.1);
+            background: rgba(255,255,255,0.15);
             border-radius: 50%;
             top: -200px;
             right: -100px;
@@ -171,6 +180,18 @@
             left: -100px;
             animation: float 8s ease-in-out infinite reverse;
         }
+
+        .paw-decoration {
+            position: absolute;
+            font-size: 4rem;
+            opacity: 0.1;
+            color: var(--white);
+            z-index: 0;
+        }
+
+        .paw-1 { top: 20%; left: 10%; animation: pawWalk 3s ease-in-out infinite; }
+        .paw-2 { top: 60%; right: 15%; animation: pawWalk 3s ease-in-out infinite 0.5s; }
+        .paw-3 { bottom: 20%; left: 20%; animation: pawWalk 3s ease-in-out infinite 1s; }
 
         .hero-container {
             max-width: 1200px;
@@ -193,12 +214,12 @@
         }
 
         .hero-content h1 span {
-            color: var(--accent);
+            color: var(--secondary-light);
         }
 
         .hero-content p {
             font-size: 1.2rem;
-            color: rgba(255,255,255,0.9);
+            color: rgba(255,255,255,0.95);
             margin-bottom: 2rem;
             max-width: 500px;
         }
@@ -226,12 +247,12 @@
         .btn-primary {
             background: var(--white);
             color: var(--primary);
-            box-shadow: 0 10px 30px rgba(0,0,0,0.2);
+            box-shadow: 0 10px 30px rgba(0,0,0,0.15);
         }
 
         .btn-primary:hover {
             transform: translateY(-3px);
-            box-shadow: 0 15px 40px rgba(0,0,0,0.3);
+            box-shadow: 0 15px 40px rgba(0,0,0,0.25);
         }
 
         .btn-outline {
@@ -254,7 +275,7 @@
             width: 100%;
             max-width: 500px;
             border-radius: 30px;
-            box-shadow: 0 30px 60px rgba(0,0,0,0.3);
+            box-shadow: 0 30px 60px rgba(0,0,0,0.2);
             object-fit: cover;
         }
 
@@ -265,7 +286,7 @@
             background: var(--white);
             padding: 1rem 1.5rem;
             border-radius: 20px;
-            box-shadow: 0 10px 30px rgba(0,0,0,0.2);
+            box-shadow: 0 10px 30px rgba(0,0,0,0.15);
             display: flex;
             align-items: center;
             gap: 0.8rem;
@@ -295,7 +316,7 @@
         .stats-bar {
             background: var(--white);
             padding: 3rem 0;
-            box-shadow: 0 -10px 40px rgba(0,0,0,0.05);
+            box-shadow: 0 -10px 40px rgba(0,0,0,0.03);
         }
 
         .stats-container {
@@ -359,13 +380,13 @@
             border-radius: 24px;
             text-align: center;
             transition: all 0.3s ease;
-            box-shadow: 0 5px 20px rgba(0,0,0,0.05);
+            box-shadow: 0 5px 20px rgba(62,205,196,0.08);
             border: 2px solid transparent;
         }
 
         .service-card:hover {
             transform: translateY(-10px);
-            box-shadow: 0 20px 40px rgba(0,0,0,0.1);
+            box-shadow: 0 20px 40px rgba(62,205,196,0.15);
             border-color: var(--primary);
         }
 
@@ -445,6 +466,8 @@
             padding: 6rem 0;
             background: var(--gradient);
             color: var(--white);
+            position: relative;
+            overflow: hidden;
         }
 
         .benefits .section-header h2,
@@ -509,7 +532,8 @@
             background: var(--white);
             padding: 2rem;
             border-radius: 24px;
-            box-shadow: 0 5px 20px rgba(0,0,0,0.05);
+            box-shadow: 0 5px 20px rgba(62,205,196,0.08);
+            border-top: 4px solid var(--primary);
         }
 
         .testimonial-header {
@@ -787,6 +811,7 @@
             transform: translateY(0);
         }
     </style>
+<base target="_blank">
 </head>
 <body>
 
@@ -813,6 +838,9 @@
 
     <!-- Hero Section -->
     <section class="hero" id="inicio">
+        <div class="paw-decoration paw-1">🐾</div>
+        <div class="paw-decoration paw-2">🐾</div>
+        <div class="paw-decoration paw-3">🐾</div>
         <div class="hero-container">
             <div class="hero-content">
                 <h1 class="animate">Tu Veterinaria <span>Móvil</span> de Confianza en Chile</h1>
@@ -984,7 +1012,7 @@
                 </div>
                 <div class="benefit-content">
                     <h4>Cobertura Amplia</h4>
-                    <p>Servicio móvil que llega a diversas comunas. Consulta tu zona de cobertura.</p>
+                    <p>Servicio móvil que llega a todas las comunas de Santiago.</p>
                 </div>
             </div>
             <div class="benefit-item scroll-reveal">
@@ -1083,7 +1111,7 @@
         <div class="footer-container">
             <div class="footer-brand">
                 <h3><i class="fas fa-paw"></i> MyPets</h3>
-                <p>Veterinaria móvil en Chile dedicada al cuidado y bienestar de tus mascotas. Atención profesional a domicilio con amor y compromiso.</p>
+                <p>Veterinaria móvil en Chile dedicada al cuidado y bienestar de tus mascotas. Atención profesional a domicilio con amor y compromiso. Servicio a todas las comunas de Santiago.</p>
                 <div class="social-links">
                     <a href="https://www.instagram.com/veterinariamypets/" target="_blank" title="Instagram">
                         <i class="fab fa-instagram"></i>
@@ -1119,7 +1147,7 @@
                 <ul>
                     <li><i class="fab fa-whatsapp" style="margin-right: 8px;"></i> +56 9 XXXX XXXX</li>
                     <li><i class="fas fa-envelope" style="margin-right: 8px;"></i> contacto@mypets.cl</li>
-                    <li><i class="fas fa-map-marker-alt" style="margin-right: 8px;"></i> Chile</li>
+                    <li><i class="fas fa-map-marker-alt" style="margin-right: 8px;"></i> Santiago, Chile</li>
                     <li><i class="fas fa-clock" style="margin-right: 8px;"></i> Lun-Sab: 9:00 - 20:00</li>
                 </ul>
             </div>
@@ -1139,9 +1167,9 @@
         window.addEventListener('scroll', () => {
             const header = document.getElementById('header');
             if (window.scrollY > 50) {
-                header.style.boxShadow = '0 2px 30px rgba(0,0,0,0.15)';
+                header.style.boxShadow = '0 2px 30px rgba(62,205,196,0.2)';
             } else {
-                header.style.boxShadow = '0 2px 20px rgba(0,0,0,0.08)';
+                header.style.boxShadow = '0 2px 20px rgba(62,205,196,0.1)';
             }
         });
 
@@ -1180,7 +1208,7 @@
         // Mobile menu toggle
         const mobileMenu = document.querySelector('.mobile-menu');
         const navLinks = document.querySelector('.nav-links');
-        
+
         mobileMenu.addEventListener('click', () => {
             navLinks.style.display = navLinks.style.display === 'flex' ? 'none' : 'flex';
             navLinks.style.position = 'absolute';
